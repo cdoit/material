@@ -104,7 +104,41 @@ namespace BambooExcel
 
         private void btnImportDirList_Click(object sender, RibbonControlEventArgs e)
         {
-            
+            try
+            {
+                Microsoft.Office.Interop.Excel.Application excelApp = Globals.ThisAddIn.Application;
+                Workbook wb = ExcelHelper.GetActiveWorkbook(true, excelApp);
+                Worksheet ws = wb.Worksheets[2];
+                if (wb == null)
+                    return;
+                Object temp;
+
+                foreach (Worksheet wstemp in wb.Worksheets)
+                {
+                    ws = wstemp;
+                    break;
+                }
+                if (ws == null)
+                    return;
+                int rowcount = ws.UsedRange.Rows.Count;
+                int colcount = ws.UsedRange.Columns.Count;
+                for (int i = 1; i <= rowcount; i++)
+                {
+                    for (int j = 1; j <= colcount; j++)
+                    {
+                        ((Range)ws.Cells[i, j]).Font.ColorIndex = 1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnDocExplorerPane_Click(object sender, RibbonControlEventArgs e)
+        {
+
         }
 
 

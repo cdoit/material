@@ -34,6 +34,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Microsoft.Office.Tools.Ribbon.RibbonDialogLauncher ribbonDialogLauncherImpl1 = this.Factory.CreateRibbonDialogLauncher();
             this.tab1 = this.Factory.CreateRibbonTab();
             this.grpFileSystem = this.Factory.CreateRibbonGroup();
             this.btnReplaceTextInFiles = this.Factory.CreateRibbonButton();
@@ -80,12 +81,14 @@
             // btnDocExplorerPane
             // 
             this.btnDocExplorerPane.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.btnDocExplorerPane.Label = "前序高亮";
+            this.btnDocExplorerPane.Label = "导入设计数据";
             this.btnDocExplorerPane.Name = "btnDocExplorerPane";
             this.btnDocExplorerPane.ShowImage = true;
+            this.btnDocExplorerPane.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnDocExplorerPane_Click);
             // 
             // group1
             // 
+            this.group1.DialogLauncher = ribbonDialogLauncherImpl1;
             this.group1.Items.Add(this.editBox1);
             this.group1.Label = "group1";
             this.group1.Name = "group1";
