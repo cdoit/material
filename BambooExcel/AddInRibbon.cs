@@ -138,8 +138,15 @@ namespace BambooExcel
 
         private void btnDocExplorerPane_Click(object sender, RibbonControlEventArgs e)
         {
-
+            OpenFileDialog dlg = new OpenFileDialog();
+            if(dlg.ShowDialog()==DialogResult.OK)
+            {
+                string file = dlg.FileName;
+               
+            }
         }
+
+        
 
         private void toggleButton1_Click(object sender, RibbonControlEventArgs e)
         {
