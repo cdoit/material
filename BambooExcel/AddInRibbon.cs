@@ -86,14 +86,14 @@ namespace BambooExcel
 
         private void btnReplaceTextInFiles_Click(object sender, RibbonControlEventArgs e)
         {
-            Microsoft.Office.Interop.Excel.Application excelApp = Globals.ThisAddIn.Application;
-            Workbook wb = ExcelHelper.GetActiveWorkbook(true, excelApp);
-            foreach(Worksheet ws in wb.Worksheets)
-            {
-                ws.BeforeDoubleClick += ws_BeforeDoubleClick;
-                ws.SelectionChange+=ws_SelectionChange;
-            }
-            MessageBox.Show("初始化成功");
+            //Microsoft.Office.Interop.Excel.Application excelApp = Globals.ThisAddIn.Application;
+            //Workbook wb = ExcelHelper.GetActiveWorkbook(true, excelApp);
+            //foreach(Worksheet ws in wb.Worksheets)
+            //{
+            //    ws.BeforeDoubleClick += ws_BeforeDoubleClick;
+            //    ws.SelectionChange+=ws_SelectionChange;
+            //}
+            //MessageBox.Show("初始化成功");
         }
 
         private void btnUnprotectWB_Click(object sender, RibbonControlEventArgs e)
@@ -137,6 +137,11 @@ namespace BambooExcel
         }
 
         private void btnDocExplorerPane_Click(object sender, RibbonControlEventArgs e)
+        {
+
+        }
+
+        private void toggleButton1_Click(object sender, RibbonControlEventArgs e)
         {
 
         }

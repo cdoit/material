@@ -34,32 +34,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Microsoft.Office.Tools.Ribbon.RibbonDialogLauncher ribbonDialogLauncherImpl1 = this.Factory.CreateRibbonDialogLauncher();
             this.tab1 = this.Factory.CreateRibbonTab();
             this.grpFileSystem = this.Factory.CreateRibbonGroup();
             this.btnReplaceTextInFiles = this.Factory.CreateRibbonButton();
-            this.grpView = this.Factory.CreateRibbonGroup();
             this.btnDocExplorerPane = this.Factory.CreateRibbonToggleButton();
-            this.group1 = this.Factory.CreateRibbonGroup();
-            this.editBox1 = this.Factory.CreateRibbonEditBox();
+            this.toggleButton1 = this.Factory.CreateRibbonToggleButton();
             this.tab1.SuspendLayout();
             this.grpFileSystem.SuspendLayout();
-            this.grpView.SuspendLayout();
-            this.group1.SuspendLayout();
             // 
             // tab1
             // 
             this.tab1.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office;
             this.tab1.Groups.Add(this.grpFileSystem);
-            this.tab1.Groups.Add(this.grpView);
-            this.tab1.Groups.Add(this.group1);
             this.tab1.Label = "悉道工具栏";
             this.tab1.Name = "tab1";
             // 
             // grpFileSystem
             // 
             this.grpFileSystem.Items.Add(this.btnReplaceTextInFiles);
-            this.grpFileSystem.Label = "File System";
+            this.grpFileSystem.Items.Add(this.btnDocExplorerPane);
+            this.grpFileSystem.Items.Add(this.toggleButton1);
+            this.grpFileSystem.Label = "物料数据";
             this.grpFileSystem.Name = "grpFileSystem";
             // 
             // btnReplaceTextInFiles
@@ -72,32 +67,21 @@
             this.btnReplaceTextInFiles.ShowImage = true;
             this.btnReplaceTextInFiles.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnReplaceTextInFiles_Click);
             // 
-            // grpView
-            // 
-            this.grpView.Items.Add(this.btnDocExplorerPane);
-            this.grpView.Label = "View";
-            this.grpView.Name = "grpView";
-            // 
             // btnDocExplorerPane
             // 
             this.btnDocExplorerPane.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.btnDocExplorerPane.Label = "导入设计数据";
+            this.btnDocExplorerPane.Label = "导入基础物料数据";
             this.btnDocExplorerPane.Name = "btnDocExplorerPane";
             this.btnDocExplorerPane.ShowImage = true;
             this.btnDocExplorerPane.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnDocExplorerPane_Click);
             // 
-            // group1
+            // toggleButton1
             // 
-            this.group1.DialogLauncher = ribbonDialogLauncherImpl1;
-            this.group1.Items.Add(this.editBox1);
-            this.group1.Label = "group1";
-            this.group1.Name = "group1";
-            // 
-            // editBox1
-            // 
-            this.editBox1.Label = "editBox1";
-            this.editBox1.Name = "editBox1";
-            this.editBox1.Text = null;
+            this.toggleButton1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.toggleButton1.Label = "导入设计包数据";
+            this.toggleButton1.Name = "toggleButton1";
+            this.toggleButton1.ShowImage = true;
+            this.toggleButton1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.toggleButton1_Click);
             // 
             // AddInRibbon
             // 
@@ -109,10 +93,6 @@
             this.tab1.PerformLayout();
             this.grpFileSystem.ResumeLayout(false);
             this.grpFileSystem.PerformLayout();
-            this.grpView.ResumeLayout(false);
-            this.grpView.PerformLayout();
-            this.group1.ResumeLayout(false);
-            this.group1.PerformLayout();
 
         }
 
@@ -120,11 +100,9 @@
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup grpFileSystem;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGroup grpView;
         internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton btnDocExplorerPane;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnReplaceTextInFiles;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonEditBox editBox1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton toggleButton1;
     }
 
     partial class ThisRibbonCollection
