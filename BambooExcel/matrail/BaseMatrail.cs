@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using MySql.Data.MySqlClient;
+using System.Windows.Forms;
 
 namespace BambooExcel.matrail
 {
@@ -12,11 +13,12 @@ namespace BambooExcel.matrail
         public bool import(string file)
         {
             bool bok = false;
-
+           
             XmlDocument doc = new System.Xml.XmlDocument();
             doc.Load(file);
-            Application.instance().myConnection.BeginTransaction();
+            MessageBox.Show(doc.ChildNodes.Count.ToString());
             string id = doc.FirstChild.Attributes["ID"].Value;
+            MessageBox.Show(doc.ChildNodes.Count.ToString());
             loadlevel("-1",doc.FirstChild);
             Application.instance().myConnection.Close();
             return bok;

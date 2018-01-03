@@ -17,11 +17,11 @@ namespace BambooExcel
 
         public static Application instance()
         {
-            if(_app==null)
+            if (Application._app == null)
             {
-                _app = new Application();
+                Application._app = new Application();
             }
-            return _app;
+            return Application._app;
         }
 
         public static void clear()
