@@ -16,10 +16,8 @@ namespace BambooExcel.matrail
            
             XmlDocument doc = new System.Xml.XmlDocument();
             doc.Load(file);
-            MessageBox.Show(doc.ChildNodes.Count.ToString());
-            string id = doc.FirstChild.Attributes["ID"].Value;
-            MessageBox.Show(doc.ChildNodes.Count.ToString());
-            loadlevel("-1",doc.FirstChild);
+            string id = doc.ChildNodes[1].FirstChild.Attributes["ID"].Value;
+            loadlevel("-1", doc.ChildNodes[1].FirstChild);
             Application.instance().myConnection.Close();
             return bok;
         }
@@ -35,8 +33,10 @@ namespace BambooExcel.matrail
                 string num = arry[1];
                 MySqlCommand cmd = Application.instance().myConnection.CreateCommand();
                 cmd.CommandText = "INSERT  INTO materialcategory(id,name,parentid,codelength)VALUES ('" + id + "','" + name + "','"+parentid+"',1)";
-                cmd.EndExecuteNonQuery(null);
+                cmd.ExecuteNonQuery();
             }
+            if(node.HasChildNodes == false)
+                return;
             foreach(XmlNode child in node.ChildNodes)
             {
 

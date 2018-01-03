@@ -40,7 +40,7 @@
     <PublishUrl>发布\</PublishUrl>
     <InstallUrl />
     <TargetCulture>zh-chs</TargetCulture>
-    <ApplicationVersion>1.0.0.64</ApplicationVersion>
+    <ApplicationVersion>1.0.0.66</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -311,7 +311,7 @@
     <ManifestKeyFile>BambooExcel_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>4604352C4BF225EF30553FC8C33A50F958CC9789</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>89D07F53DF6E8FFE8B485914B465A56E42DB17DE</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
