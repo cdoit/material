@@ -9,6 +9,8 @@ using BambooExcel.Forms;
 using Microsoft.Office.Interop.Excel;
 using BambooExcel.Helpers;
 using BambooExcel.matrail;
+using MySql.Data.MySqlClient;
+using BambooExcel.Mod;
 
 
 
@@ -162,7 +164,9 @@ namespace BambooExcel
         //导入设计数据
         private void toggleButton1_Click(object sender, RibbonControlEventArgs e)
         {
-
+            insertForm dlg = new insertForm();
+            dlg.ShowDialog();
+            
         }
 
 
