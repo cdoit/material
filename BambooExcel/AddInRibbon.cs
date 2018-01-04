@@ -146,7 +146,6 @@ namespace BambooExcel
                 OpenFileDialog dlg = new OpenFileDialog();
                 if(dlg.ShowDialog()==DialogResult.OK)
                 {
-                    MessageBox.Show(dlg.FileName);
                     string file = dlg.FileName;
                     BaseMatrail matrail = new BaseMatrail();
                     matrail.import(file);

@@ -59,7 +59,42 @@ namespace BambooExcel.matrail
             return null;
         }
 
-      
+        private string[] bianli(List<string[]> al)
+        {
+            if (al.Count == 0)
+                return null;
+            int size = 1;
+            for (int i = 0; i < al.Count; i++)
+            {
+                size = size * al[i].Length;
+            }
+            string[] str = new string[size];
+            for (int j = 0; j < size; j++)
+            {
+                for (int m = 0; m < al.Count; m++)
+                {
+                    str[j] = str[j] + al[m][(j * jisuan(al, m) / size) % al[m].Length] + " ";
+                }
+                str[j] = str[j].Trim(' ');
+            }
+            return str;
+        }
+        private int jisuan(List<string[]> al, int m)
+        {
+            int result = 1;
+            for (int i = 0; i < al.Count; i++)
+            {
+                if (i <= m)
+                {
+                    result = result * al[i].Length;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return result;
+        } 
         private void loadlevel(string parentid,string parentnum,XmlNode node)
         {
             //string id = node.Attributes["ID"].Value;
@@ -107,6 +142,7 @@ namespace BambooExcel.matrail
 
                             }
                         }
+     
                         return;
                     }
                 }
