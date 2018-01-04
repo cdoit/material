@@ -324,7 +324,7 @@
     <ManifestKeyFile>BambooExcel_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>4604352C4BF225EF30553FC8C33A50F958CC9789</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>63309D9EAACD840750C95AC5A9ED714FFC2D390A</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
