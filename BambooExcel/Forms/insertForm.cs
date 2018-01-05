@@ -125,6 +125,8 @@ namespace BambooExcel.Forms
                                     {
                                         designpackge.Expression = "H" + i + gongshi;
                                     }
+                                    //填入物料编码
+                                    designpackge.Materialid = ws.Cells[i, 11].Text;
                                 }
                                 else
                                 {
@@ -188,6 +190,8 @@ namespace BambooExcel.Forms
                                         {
                                             designpackge.Expression = "H" + i + gongshi;
                                         }
+                                        //填入物料编码
+                                        designpackge.Materialid = ws.Cells[i, 11].Text;
                                     }
                                     else
                                     {
