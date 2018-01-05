@@ -123,7 +123,7 @@ namespace BambooExcel.Forms
                                     }
                                     else
                                     {
-                                        designpackge.Expression = gongshi;
+                                        designpackge.Expression = "H" + i + gongshi;
                                     }
                                 }
                                 else
@@ -186,7 +186,7 @@ namespace BambooExcel.Forms
                                         }
                                         else 
                                         {
-                                            designpackge.Expression = gongshi;
+                                            designpackge.Expression = "H" + i + gongshi;
                                         }
                                     }
                                     else
