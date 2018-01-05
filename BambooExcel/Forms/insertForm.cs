@@ -184,7 +184,7 @@ namespace BambooExcel.Forms
                                         {
                                             designpackge.Expression = "0";
                                         }
-                                        else
+                                        else 
                                         {
                                             designpackge.Expression = gongshi;
                                         }
