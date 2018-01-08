@@ -111,7 +111,7 @@ namespace BambooExcel.Forms
                                 //designpackge.Parent_id = "-1";
 
                                 //填入公式express
-                                if (j == 5)
+                                if (j == 3 || j == 4 || j == 5 || j == 9)
                                 {
                                     designpackge.Expression = express;
                                 }
