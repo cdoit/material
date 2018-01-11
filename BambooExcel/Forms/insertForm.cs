@@ -87,6 +87,8 @@ namespace BambooExcel.Forms
                         express = "G" + i + "=" + ws.Cells[i, 7].Text;
                     }
                     String unit = ws.Cells[i, 8].Text;
+                    //获取公式
+                    String gongshi = ws.Cells[i, 13].Formula;
                     for (int j = 2; j <= colcount; j++)
                     {
                         // 列7 ：表达式     列8：单位
@@ -104,9 +106,33 @@ namespace BambooExcel.Forms
                                 designpackge.Houseplanid = houseplanid;
                                 designpackge.Nametype = "room";
                                 designpackge.Cname = cName;
-                                designpackge.Expression = express;
+                                
                                 designpackge.Unit = unit;
                                 //designpackge.Parent_id = "-1";
+
+                                //填入公式express
+                                if (j == 3 || j == 4 || j == 5 || j == 9)
+                                {
+                                    designpackge.Expression = express;
+                                }
+                                else if(j == 10)
+                                {
+                                    if (string.IsNullOrEmpty(gongshi))
+                                    {
+                                        designpackge.Expression = "0";
+                                    }
+                                    else
+                                    {
+                                        designpackge.Expression = "H" + i + gongshi;
+                                    }
+                                    //填入物料编码
+                                    designpackge.Materialid = ws.Cells[i, 11].Text;
+                                }
+                                else
+                                {
+                                    designpackge.Expression = "0";
+                                }
+
 
                                 String Parent_id = "";
                                 if (j == 3 || j == 4 || j == 5 || j == 10)
@@ -145,14 +171,34 @@ namespace BambooExcel.Forms
                                     designpackge.Houseplanid = houseplanid;
                                     designpackge.Nametype = "room";
                                     designpackge.Cname = cName;
-                                    designpackge.Expression = express;
+                                    //designpackge.Expression = express;
                                     designpackge.Unit = unit;
                                     //designpackge.Parent_id = "-1";
 
+                                    //填入公式express
+                                    if (j == 5)
+                                    {
+                                        designpackge.Expression = express;
+                                    }
+                                    else if (j == 10)
+                                    {
+                                        if (string.IsNullOrEmpty(gongshi))
+                                        {
+                                            designpackge.Expression = "0";
+                                        }
+                                        else 
+                                        {
+                                            designpackge.Expression = "H" + i + gongshi;
+                                        }
+                                        //填入物料编码
+                                        designpackge.Materialid = ws.Cells[i, 11].Text;
+                                    }
+                                    else
+                                    {
+                                        designpackge.Expression = "0";
+                                    }
+
                                     String Parent_id = "";
-
-
-
                                     if (j == 3 || j == 4 || j == 5 || j == 10)
                                     {
                                         if (String.IsNullOrEmpty(ws.Cells[i, j - 1].Text))
