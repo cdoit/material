@@ -40,11 +40,7 @@
     <PublishUrl>发布\</PublishUrl>
     <InstallUrl />
     <TargetCulture>zh-chs</TargetCulture>
-<<<<<<< HEAD
-    <ApplicationVersion>1.0.0.120</ApplicationVersion>
-=======
     <ApplicationVersion>1.0.0.127</ApplicationVersion>
->>>>>>> e98d1f498ccdc7aef91cb625a3eddf0ebda2e147
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -125,6 +121,7 @@
     <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
     <WarningLevel>4</WarningLevel>
     <RegisterForComInterop>false</RegisterForComInterop>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <!--
     This section defines properties that are set when the "Release" configuration is selected.
@@ -328,7 +325,7 @@
     <ManifestKeyFile>BambooExcel_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>D195FF747E1D728940E41295E8B6F5EC9F63891B</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>86DACB43884A5DC7CFDA736EC5C87314BE18BD9A</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>

@@ -163,7 +163,7 @@ namespace BambooExcel.matrail
                                 code += codetemp[j] + "_";
                             }
                             cmd = Application.instance().myConnection.CreateCommand();
-                            cmd.CommandText = "INSERT  INTO material(id,categoryid,name,specifications,attributeinfo)VALUES ('" + selfid + "','" + parentnum + "','" + "" + "','" + code + "','" + attribute + "')";
+                            cmd.CommandText = "INSERT  INTO material(id,categoryid,name,unit,attributeinfo)VALUES ('" + selfid + "','" + parentnum + "','" + "" + "','" + code + "','" + attribute + "')";
                             cmd.ExecuteNonQuery();
                         }
                         return;
