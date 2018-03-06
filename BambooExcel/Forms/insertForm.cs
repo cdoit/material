@@ -86,7 +86,7 @@ namespace BambooExcel.Forms
                     {
                         express = "G" + i + "=" + ws.Cells[i, 7].Text;
                     }
-                    String unit = ws.Cells[i, 8].Text;
+                    String unit = ws.Cells[i, 14].Text;
                     //获取公式
                     String gongshi = ws.Cells[i, 13].Formula;
                     for (int j = 2; j <= colcount; j++)
@@ -316,7 +316,7 @@ namespace BambooExcel.Forms
                 //mysql.Close();
 
                 MySqlCommand cmd = Application.instance().myConnection.CreateCommand();
-                string sqlInsert = string.Format("insert into house values ('{0}','{1}')", house.Id, house.Housename);
+                string sqlInsert = string.Format("insert into house values ('{0}','{1}','{2}')", house.Id, house.Housename,house.Designdata);
                 cmd.CommandText = sqlInsert;
                 cmd.ExecuteNonQuery();
 

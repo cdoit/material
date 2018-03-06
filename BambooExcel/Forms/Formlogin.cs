@@ -22,7 +22,7 @@ namespace BambooExcel.Forms
         {
             try
             {
-                MySqlConnection myConnection = new MySqlConnection("server=" + this.txthost.Text + ";uid = " + this.txtusr.Text + ";pwd = " + this.txtpwd.Text + ";database=cdomaterial");
+                MySqlConnection myConnection = new MySqlConnection("server=" + this.txthost.Text + ";uid = " + this.txtusr.Text + ";pwd = " + this.txtpwd.Text + ";database=" + this.databaseText.Text);
                 myConnection.Open();
                 if (myConnection.State == ConnectionState.Open)
                 {
@@ -44,6 +44,16 @@ namespace BambooExcel.Forms
         private void btcancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

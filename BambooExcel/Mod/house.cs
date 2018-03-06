@@ -21,5 +21,13 @@ namespace BambooExcel.Mod
             get { return housename; }
             set { housename = value; }
         }
+
+        private String designdata;
+
+        public String Designdata
+        {
+            get { return designdata; }
+            set { designdata = value; }
+        }
     }
 }

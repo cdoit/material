@@ -38,7 +38,6 @@ namespace BambooExcel
                 Worksheet ws = null;
                 if (wb == null)
                     return;
-                Object temp;
 
                 foreach (Worksheet wstemp in wb.Worksheets)
                 {
@@ -116,7 +115,6 @@ namespace BambooExcel
                 Worksheet ws = wb.Worksheets[2];
                 if (wb == null)
                     return;
-                Object temp;
 
                 foreach (Worksheet wstemp in wb.Worksheets)
                 {
@@ -167,6 +165,184 @@ namespace BambooExcel
             insertForm dlg = new insertForm();
             dlg.ShowDialog();
             
+        }
+
+        //导入提量数据
+        private void toggleButton2_Click(object sender, RibbonControlEventArgs e)
+        {
+            //MessageBox.Show("导入提量数据，这里默认是三级");
+            Microsoft.Office.Interop.Excel.Application excelApp = Globals.ThisAddIn.Application;
+            Workbook wb = ExcelHelper.GetActiveWorkbook(true, excelApp);
+            Worksheet ws = null;
+            if (wb == null)
+                return;
+            //获取第三个工作簿
+            ws = wb.Worksheets[1];
+            if (ws == null)
+                return;
+
+            //定义集合(工作簿1数据  用于存数据的坐标--数据信息)
+            Dictionary<String, bamBean> dic = new Dictionary<String, bamBean>();
+            int rowcount = ws.UsedRange.CurrentRegion.Rows.Count;
+            //MessageBox.Show("行：" + rowcount);
+            int colcount = ws.UsedRange.CurrentRegion.Columns.Count;
+            //MessageBox.Show("列：" + colcount);
+
+            //先取出表格第二行数据
+            string projectname = ws.Cells[2, 2].Text;
+            string projectcode = ws.Cells[2, 9].Text;
+            string address = ws.Cells[2, 5].Text;
+            string area = ws.Cells[2, 7].Text;
+
+            project project = new project();
+            string projectId = System.Guid.NewGuid().ToString("N");
+            project.Id = projectId;
+            project.Name = projectname;
+            project.Code = projectcode;
+            project.Address = address;
+            project.Area = area;
+            insertinto(project);
+
+            //批量插入提量数据
+            for (int i = 4; i <= rowcount; i++)
+            {
+                for (int j = 2; j <= colcount;j++ )
+                {
+                    //判断是否为构件
+                    if(j == 2)
+                    {
+                        if (!string.IsNullOrEmpty(ws.Cells[i, j].Text))
+                        {
+                            component component = new component();
+                            String componentId = System.Guid.NewGuid().ToString("N");
+                            component.Id = componentId;
+                            component.Projectid = projectId;
+                            component.Name = ws.Cells[i, j].Text;
+                            saveComponent(component);
+                            
+
+                            //记录数据
+                            bamBean bean = new bamBean();
+                            bean.Id = componentId;
+                            dic.Add(i + "-" + j, bean);
+                        }
+                        else
+                        {
+                            //记录数据
+                            bamBean bean = new bamBean();
+                            bean.Id = dic[(i - 1) + "-" + j].Id;
+                            dic.Add(i + "-" + j, bean);
+                        }
+                    }
+                    //第三列
+                    else if (j == 3)
+                    {
+                        if (!string.IsNullOrEmpty(ws.Cells[i, j].Text))
+                        {
+                            meterage meterage = new meterage();
+                            String meterageId = System.Guid.NewGuid().ToString("N");
+                            meterage.Id = meterageId;
+                            // 从dic中取j-1中的数据
+                            meterage.Componentid = dic[i + "-" + (j-1)].Id;
+                            meterage.Parentid = "-1";
+                            meterage.Materielcode = "code";
+                            meterage.Materielname = ws.Cells[i, j].Text;
+                            meterage.Specifications = ws.Cells[i, (j+2)].Text;
+                            meterage.Count = ws.Cells[i, (j + 3)].Text;
+                            meterage.Unit = ws.Cells[i, (j + 4)].Text;
+                            meterage.Rule = ws.Cells[i, (j + 5)].Text;
+                            meterage.Lossrate = "";
+                            meterage.Memo = ws.Cells[i, (j + 6)].Text;
+                            saveMeterage(meterage);
+
+                            //记录数据
+                            bamBean bean = new bamBean();
+                            bean.Id = meterageId;
+                            dic.Add(i + "-" + j, bean);
+
+                        }
+                        else
+                        {
+                            if(string.IsNullOrEmpty(ws.Cells[i, (j-1)].Text))
+                            {
+                                //记录数据
+                                bamBean bean = new bamBean();
+                                bean.Id = dic[(i - 1) + "-" + j].Id;
+                                dic.Add(i + "-" + j, bean);
+                            }
+                            
+                        }
+                    }
+                    else if(j == 4)
+                    {
+                        if (!string.IsNullOrEmpty(ws.Cells[i, j].Text))
+                        {
+                            meterage meterage = new meterage();
+                            meterage.Id = System.Guid.NewGuid().ToString("N");
+                            meterage.Componentid = dic[i + "-" + (j - 2)].Id;
+                            meterage.Parentid = dic[i + "-" + (j - 1)].Id;
+                            meterage.Materielcode = "code";
+                            meterage.Materielname = ws.Cells[i, j].Text;
+                            meterage.Specifications = ws.Cells[i, (j + 1)].Text;
+                            meterage.Count = ws.Cells[i, (j + 2)].Text;
+                            meterage.Unit = ws.Cells[i, (j + 3)].Text;
+                            meterage.Rule = ws.Cells[i, (j + 4)].Text;
+                            meterage.Lossrate = "";
+                            meterage.Memo = ws.Cells[i, (j + 5)].Text;
+                            saveMeterage(meterage);
+                        }
+                    }
+                }
+            }
+
+            MessageBox.Show("导入成功！");
+
+        }
+
+        public void insertinto(BambooExcel.Mod.project project)
+        {
+            try
+            {
+                MySqlCommand cmd = Application.instance().myConnection.CreateCommand();
+                string sqlInsert = string.Format("insert into project values ('{0}','{1}','{2}','{3}','{4}')", project.Id, project.Name, project.Code, project.Address, project.Area);
+                cmd.CommandText = sqlInsert;
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+        public void saveComponent(BambooExcel.Mod.component component)
+        {
+            try
+            {
+                MySqlCommand cmd = Application.instance().myConnection.CreateCommand();
+                string sqlInsert = string.Format("insert into materiel_component values ('{0}','{1}','{2}')", component.Id, component.Projectid, component.Name);
+                cmd.CommandText = sqlInsert;
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void saveMeterage(BambooExcel.Mod.meterage meterage)
+        {
+            try
+            {
+                MySqlCommand cmd = Application.instance().myConnection.CreateCommand();
+                string sqlInsert = string.Format("insert into meterage_bill values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}')", meterage.Id, meterage.Componentid,meterage.Parentid, meterage.Materielcode, meterage.Materielname, meterage.Specifications, meterage.Count, meterage.Unit, meterage.Rule, meterage.Lossrate, meterage.Memo);
+                cmd.CommandText = sqlInsert;
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
 

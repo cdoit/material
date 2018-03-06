@@ -39,6 +39,7 @@
             this.btnReplaceTextInFiles = this.Factory.CreateRibbonButton();
             this.btnDocExplorerPane = this.Factory.CreateRibbonToggleButton();
             this.toggleButton1 = this.Factory.CreateRibbonToggleButton();
+            this.toggleButton2 = this.Factory.CreateRibbonToggleButton();
             this.tab1.SuspendLayout();
             this.grpFileSystem.SuspendLayout();
             // 
@@ -54,6 +55,7 @@
             this.grpFileSystem.Items.Add(this.btnReplaceTextInFiles);
             this.grpFileSystem.Items.Add(this.btnDocExplorerPane);
             this.grpFileSystem.Items.Add(this.toggleButton1);
+            this.grpFileSystem.Items.Add(this.toggleButton2);
             this.grpFileSystem.Label = "物料数据";
             this.grpFileSystem.Name = "grpFileSystem";
             // 
@@ -83,6 +85,14 @@
             this.toggleButton1.ShowImage = true;
             this.toggleButton1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.toggleButton1_Click);
             // 
+            // toggleButton2
+            // 
+            this.toggleButton2.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.toggleButton2.Label = "导入提量数据";
+            this.toggleButton2.Name = "toggleButton2";
+            this.toggleButton2.ShowImage = true;
+            this.toggleButton2.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.toggleButton2_Click);
+            // 
             // AddInRibbon
             // 
             this.Name = "AddInRibbon";
@@ -103,6 +113,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton btnDocExplorerPane;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnReplaceTextInFiles;
         internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton toggleButton1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton toggleButton2;
     }
 
     partial class ThisRibbonCollection

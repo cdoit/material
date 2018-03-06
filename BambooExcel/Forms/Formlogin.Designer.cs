@@ -36,6 +36,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.databaseText = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txthost
@@ -64,7 +66,7 @@
             // 
             // btok
             // 
-            this.btok.Location = new System.Drawing.Point(126, 222);
+            this.btok.Location = new System.Drawing.Point(35, 270);
             this.btok.Name = "btok";
             this.btok.Size = new System.Drawing.Size(75, 23);
             this.btok.TabIndex = 3;
@@ -74,7 +76,7 @@
             // 
             // btcancel
             // 
-            this.btcancel.Location = new System.Drawing.Point(219, 222);
+            this.btcancel.Location = new System.Drawing.Point(177, 270);
             this.btcancel.Name = "btcancel";
             this.btcancel.Size = new System.Drawing.Size(75, 23);
             this.btcancel.TabIndex = 4;
@@ -109,11 +111,32 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "密码：";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(33, 225);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 12);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "数据库：";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // databaseText
+            // 
+            this.databaseText.Location = new System.Drawing.Point(116, 222);
+            this.databaseText.Name = "databaseText";
+            this.databaseText.Size = new System.Drawing.Size(136, 21);
+            this.databaseText.TabIndex = 8;
+            this.databaseText.Text = "cdomaterial";
+            this.databaseText.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // Formlogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(330, 270);
+            this.ClientSize = new System.Drawing.Size(335, 333);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.databaseText);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -141,5 +164,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox databaseText;
     }
 }
