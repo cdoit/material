@@ -304,7 +304,7 @@ namespace BambooExcel
             try
             {
                 MySqlCommand cmd = Application.instance().myConnection.CreateCommand();
-                string sqlInsert = string.Format("insert into project values ('{0}','{1}','{2}','{3}','{4}')", project.Id, project.Name, project.Code, project.Address, project.Area);
+                string sqlInsert = string.Format("insert into project values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}',NULL)", project.Id, project.Name, project.Code, project.Address, project.Area, DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"), DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"));
                 cmd.CommandText = sqlInsert;
                 cmd.ExecuteNonQuery();
             }
@@ -320,7 +320,7 @@ namespace BambooExcel
             try
             {
                 MySqlCommand cmd = Application.instance().myConnection.CreateCommand();
-                string sqlInsert = string.Format("insert into materiel_component values ('{0}','{1}','{2}')", component.Id, component.Projectid, component.Name);
+                string sqlInsert = string.Format("insert into materielcomponent values ('{0}','{1}','{2}','{3}','{4}',NULL)", component.Id, component.Projectid, component.Name, DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"), DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"));
                 cmd.CommandText = sqlInsert;
                 cmd.ExecuteNonQuery();
             }
@@ -335,7 +335,7 @@ namespace BambooExcel
             try
             {
                 MySqlCommand cmd = Application.instance().myConnection.CreateCommand();
-                string sqlInsert = string.Format("insert into meterage_bill values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}')", meterage.Id, meterage.Componentid,meterage.Parentid, meterage.Materielcode, meterage.Materielname, meterage.Specifications, meterage.Count, meterage.Unit, meterage.Rule, meterage.Lossrate, meterage.Memo);
+                string sqlInsert = string.Format("insert into meteragebill values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}',NULL)", meterage.Id, meterage.Componentid, meterage.Parentid, meterage.Materielcode, meterage.Materielname, meterage.Specifications, meterage.Count, meterage.Unit, meterage.Rule, meterage.Lossrate, meterage.Memo, DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"), DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"));
                 cmd.CommandText = sqlInsert;
                 cmd.ExecuteNonQuery();
             }
